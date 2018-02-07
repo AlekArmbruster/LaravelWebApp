@@ -12,14 +12,19 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    public function __invoke(){
-        // $this->databaseInsert();
-        // $this->databaseInsert();
-        // $this->databaseUpdate();
-        // $this->databaseDelete();
-        
+    public function index() {
         return view('home');
     }
+
+
+    // public function __invoke(){
+    //     // $this->databaseInsert();
+    //     // $this->databaseInsert();
+    //     // $this->databaseUpdate();
+    //     // $this->databaseDelete();
+        
+    //     return view('home');
+    // }
 
 
     // public function databaseInsert(){
