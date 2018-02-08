@@ -12,6 +12,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script>
+        var x = name;
+        console.log(name)
+    </script>
 </head>
 <body>
 
@@ -28,5 +33,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+    <script src="js/before.js"></script>
+    <script src="js/myapp.js"></script>
+    <script src="js/after.js"></script>
 </body>
 </html>
