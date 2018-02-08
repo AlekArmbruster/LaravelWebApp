@@ -74,7 +74,6 @@
                                 <select name="country" class="form-control">
                                    <option value="" selected>Choose...</option>
 
-                                   <option value="lalala">lalalal</option>
                                     @foreach ($countries as $country)
                                         <option value="{{ $country }}">{{$country}}</option>
                                     @endforeach
