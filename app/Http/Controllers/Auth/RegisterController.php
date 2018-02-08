@@ -65,8 +65,6 @@ class RegisterController extends Controller
     {
         $countriesArray = array('Canada', 'United States', 'Serbia');
 
-        // $this->allslots=array('Canada', 'United States', 'Serbia');
-
         $messages = [
             'in_array' => 'You must choose existing value',
         ];  
@@ -80,7 +78,6 @@ class RegisterController extends Controller
                 'required',
                 Rule::in($countriesArray)
             ],
-            // 'country' => 'required|in:' . implode(glue, pieces)(',', $this->allslots),
             'password' => 'required',
         ], $messages);
     }
