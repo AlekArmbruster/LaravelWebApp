@@ -19,31 +19,52 @@ var cars = [
         { "name":"Fiat", "models":[ "500", "Panda" ] }
     ]
 
-class Person {
 
-	constructor(firstName, lastName, gender) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.gender = gender;
-	}
-	fullName() {
-		return this.firstName + ' ' + this.lastName;
-	}
+function Person(firstName, lastName, gender) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.gender = gender;
 
-	//Staticke metode se ne mogu pozivati nad instancama klase, vec samo unutar klase.
-	static getFirstName() {
-		return this.firstName;
-	}
+  Person.prototype.greedings = function greedings () {
+    console.log('Hello ' + this.firstName + ' ' + this.lastName);
+  }
 }
 
-const person = new Person('John', 'Doe', 'male');
-console.log(person.gender);
-console.log(person.fullName());
+function Doctor(firstName, lastName, gender, speciality) {
+  Person.call(this, firstName, lastName, gender);
+  this.speciality = speciality;
 
-//Nasledjivanje klase Person
-function Teacher(first, last, age, gender, interests, subject) {
-  Person.call(this, first, last, age, gender, interests);
+  this.patients = [];
 
-  this.subject = subject;
+  this.addPatient = (patient) => {
+    this.patients.push(patient);
+  }
+
+  Doctor.prototype.greedings = function () {
+    console.log('Hello Dr. ' + this.firstName + ' ' + this.lastName + ' Speciality: ' + this.speciality);
+  }
+
 }
+
+  function Patient(firstName, lastName, gender, medicRecordId) {
+    Person.call(this, firstName, lastName, gender);
+    this.medicRecordId = medicRecordId;
+  }
+
+Patient.prototype = Object.create(Person.prototype);
+Patient.prototype.constructor = Patient;
+Patient.parent = Person.prototype;
+
+Doctor.prototype = Object.create(Person.prototype);
+Doctor.prototype.constructor = Doctor;
+Doctor.parent = Person.prototype;
+
+const doctorMilan = new Doctor('Milan', 'Milanovic', 'M', 'hirurg');
+const patientDragan = new Patient('Dragan', 'Dragic', 'M');
+
+patientDragan.doktor = doctorMilan;
+doctorMilan.addPatient(patientDragan);
+
+doctorMilan.greedings();
+patientDragan.greedings();
 
